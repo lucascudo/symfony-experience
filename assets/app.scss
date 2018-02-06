@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,600);
+
+// Variables
+$white: #fff;
+$sheets: #0f9d58;
+$pdf: #db4437;
+$doc: #4285f4;
+$slides: #f5b707;
+$code: #00a78e;
+
+// Mixins
+@mixin center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+body {
+	background-color: $white;
+	font-smoothing: antialiased;
+	height: 100vh;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	font-weight: 300;
+	color: #777;
+  margin-bottom: 0;
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 16px;
+  color: #bbb;
+}

@@ -3,10 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('build/app.css') }}"/>
+        {% endblock %}
     </head>
     <body>
+      <div id="sidebar">
+          {% block sidebar %}
+              <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="{{ url('lucky_number') }}">Lucky Number</a></li>
+                  <li><a href="/contact">Contact</a></li>
+              </ul>
+          {% endblock %}
+      </div>
+      <div id="content" >
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+      </div>
     </body>
 </html>
