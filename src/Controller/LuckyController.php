@@ -19,17 +19,18 @@ class LuckyController extends Controller
       *     }
       * )
       */
-    public function number(SessionInterface $session, $userNumber = 0)
+    public function number(Request $request, SessionInterface $session, $userNumber = 0)
     {
-      $request = Request::createFromGlobals();
       // use a default value if the attribute doesn't exist
       $userAgent = $session->get('user-agent', $request->headers->get('user-agent'));
       // store an attribute for reuse during a later user request
       $session->set('user-agent', $userAgent);
       $responseObject = [
-        'userNumber' => $userNumber,
+        'userNumber' => (int) $userNumber,
         'randomNumber' => mt_rand(0, 100)
       ];
-      return $this->render('lucky/number.html.twig', $responseObject);
+      return ($request->get('_format') == 'json')
+        ? $this->json($responseObject)
+        : $this->render('lucky/number.html.twig', $responseObject);
     }
 }
