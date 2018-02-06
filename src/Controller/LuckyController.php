@@ -8,13 +8,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class LuckyController extends Controller
 {
     /**
-      * @Route("/lucky/number/{userNumber}", name="lucky_number", requirements={"userNumber"="\d+"})
+      * @Route("/lucky/number/{userNumber}.{_format}",
+      *     name="lucky_number",
+      *     defaults={"_format": "html"},
+      *     requirements={
+      *         "_format": "html|rss|json",
+      *         "userNumber"="\d+"
+      *     }
+      * )
       */
     public function number($userNumber = 0)
     {
-        return $this->render('lucky/number.html.twig', [
+        $responseObject = [
           'userNumber' => $userNumber,
           'randomNumber' => mt_rand(0, 100)
-        ]);
+        ];
+        return $this->render('lucky/number.html.twig', $responseObject);
     }
 }
