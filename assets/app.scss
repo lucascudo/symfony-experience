@@ -1,5 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,600);
 
+// customize some Bootstrap variables
+$brand-primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
 // Variables
 $white: #fff;
 $sheets: #0f9d58;
@@ -37,7 +43,7 @@ h2 {
 	color: #bbb;
 }
 
-h1, h2, form {
+h1, h2, form, div.alert {
 	text-align: center;
 }
 

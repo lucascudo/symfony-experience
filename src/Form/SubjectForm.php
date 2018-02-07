@@ -20,7 +20,7 @@ class SubjectForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('image', TextType::class)
+            ->add('image', TextType::class, ['required' => false])
             ->add('save', SubmitType::class, ['label' => 'Create Subject']);
     }
 }

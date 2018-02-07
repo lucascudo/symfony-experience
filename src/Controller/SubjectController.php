@@ -35,7 +35,7 @@ class SubjectController extends Controller
             // $em->persist($subject);
             // $em->flush();
             $logger->info('Created a subject', $subject->toArray());
-            $session->getFlashBag()->add('success', 'Subject ' . $subject->getName() . ' created successfully');
+            $session->getFlashBag()->add('success', 'Subject "' . $subject->getName() . '" created successfully');
             return $this->redirectToRoute('subject_success');
         }
         return $this->render('subject/create.html.twig', [
