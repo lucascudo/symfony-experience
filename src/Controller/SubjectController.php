@@ -35,8 +35,13 @@ class SubjectController extends Controller
         $subject = new Subject();
         $form = $this->createForm(SubjectForm::class, $subject);;
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $subject = $form->getData();
+            if (!$subject->getImage())
+            {
+                $subject->setImage('');
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($subject);
             $em->flush();
