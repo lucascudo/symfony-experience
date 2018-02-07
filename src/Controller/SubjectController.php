@@ -10,13 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SubjectController extends Controller
 {
     /**
      * @Route("/subject", name="subject")
      */
-    public function create(Request $request, LoggerInterface $logger)
+    public function create(Request $request, SessionInterface $session, LoggerInterface $logger)
     {
         // creates a subject and gives it some dummy data for this example
         $subject = new Subject();
@@ -34,6 +35,7 @@ class SubjectController extends Controller
             // $em->persist($subject);
             // $em->flush();
             $logger->info('Created a subject', $subject->toArray());
+            $session->getFlashBag()->add('success', 'Subject ' . $subject->getName() . ' created successfully');
             return $this->redirectToRoute('subject_success');
         }
         return $this->render('subject/create.html.twig', [
@@ -44,7 +46,7 @@ class SubjectController extends Controller
     /**
      * @Route("/subject/success", name="subject_success")
      */
-    public function created(Request $request)
+    public function created(Request $request, SessionInterface $session)
     {
         return $this->render('subject/created.html.twig');
     }

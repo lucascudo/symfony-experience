@@ -8,17 +8,28 @@
         {% endblock %}
     </head>
     <body>
-      <div id="hMenu">
+        <div id="hMenu">
           <ul>
               <li><a href="/">Home</a></li>
               <li><a href="{{ url('lucky_number') }}">Lucky Number</a></li>
               <li><a href="{{ url('subject') }}">Subject</a></li>
               <li><a href="/contact">Contact</a></li>
           </ul>
-      </div>
-      <div id="content" >
-        {% block body %}{% endblock %}
+        </div>
+
+        {# pass an array argument to get the messages of those types  #}
+        {% for label, messages in app.flashes(['success', 'info', 'warning', 'danger']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div id="content" >
+            {% block body %}{% endblock %}
+        </div>
+
         {% block javascripts %}{% endblock %}
-      </div>
     </body>
 </html>
