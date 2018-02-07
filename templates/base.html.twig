@@ -8,15 +8,13 @@
         {% endblock %}
     </head>
     <body>
-      <div id="sidebar">
-          {% block sidebar %}
-              <ul>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="{{ url('lucky_number') }}">Lucky Number</a></li>
-                  <li><a href="{{ url('subject') }}">Subject</a></li>
-                  <li><a href="/contact">Contact</a></li>
-              </ul>
-          {% endblock %}
+      <div id="hMenu">
+          <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="{{ url('lucky_number') }}">Lucky Number</a></li>
+              <li><a href="{{ url('subject') }}">Subject</a></li>
+              <li><a href="/contact">Contact</a></li>
+          </ul>
       </div>
       <div id="content" >
         {% block body %}{% endblock %}
