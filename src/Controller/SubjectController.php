@@ -17,6 +17,19 @@ class SubjectController extends Controller
     /**
      * @Route("/subject", name="subject")
      */
+    public function index(Request $request)
+    {
+        $subjects = $this->getDoctrine()
+            ->getRepository(Subject::class)
+            ->findAll();
+        return $this->render('subject/index.html.twig', [
+            'subjects' => $subjects,
+        ]);
+    }
+
+    /**
+     * @Route("/subject/create", name="subject_create")
+     */
     public function create(Request $request, SessionInterface $session, LoggerInterface $logger)
     {
         $subject = new Subject();

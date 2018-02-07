@@ -1,0 +1,30 @@
+{# templates/subject/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Subjects {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        div.subject {
+            float: left;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm">
+            <a href="{{ url('subject_create') }}" class="btn btn-primary">New Subject</a>
+        </div>
+    </div>
+    <div class="row">
+        {% for subject in subjects %}
+            <div class="col-sm subject {{ cycle(['even', 'odd'], loop.index0) }}">
+              <h2> {{ subject.name }} </h2>
+              <img src="{{ subject.image }}" />
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

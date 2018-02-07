@@ -24,7 +24,7 @@ class Subject
 
     /**
      * @Assert\Url()
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=500)
      */
     protected $image;
 
