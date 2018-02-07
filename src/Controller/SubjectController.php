@@ -19,21 +19,16 @@ class SubjectController extends Controller
      */
     public function create(Request $request, SessionInterface $session, LoggerInterface $logger)
     {
-        // creates a subject and gives it some dummy data for this example
         $subject = new Subject();
         $subject->setName('skulls');
         $subject->setImage('file:///home/lucas/Pictures/1469383151011-0.jpg');
         $form = $this->createForm(SubjectForm::class, $subject);;
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$subject` variable has also been updated
             $subject = $form->getData();
-            // ... perform some action, such as saving the subject to the database
-            // for example, if Subject is a Doctrine entity, save it!
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($subject);
-            // $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($subject);
+            $em->flush();
             $logger->info('Created a subject', $subject->toArray());
             $session->getFlashBag()->add('success', 'Subject "' . $subject->getName() . '" created successfully');
             return $this->redirectToRoute('subject_success');
