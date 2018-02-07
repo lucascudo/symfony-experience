@@ -10,15 +10,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class LuckyController extends Controller
 {
     /**
-      * @Route("/lucky/number/{userNumber}.{_format}",
-      *     name="lucky_number",
-      *     defaults={"_format": "html"},
-      *     requirements={
-      *         "_format": "html|rss|json",
-      *         "userNumber"="\d+"
-      *     }
-      * )
-      */
+     * @Route("/lucky/number/{userNumber}.{_format}",
+     *     name="lucky_number",
+     *     defaults={"_format": "html"},
+     *     requirements={
+     *         "_format": "html|rss|json",
+     *         "userNumber"="\d+"
+     *     }
+     * )
+     */
     public function number(Request $request, SessionInterface $session, $userNumber = 0)
     {
       // use a default value if the attribute doesn't exist
