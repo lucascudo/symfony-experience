@@ -33,8 +33,6 @@ class SubjectController extends Controller
     public function create(Request $request, SessionInterface $session, LoggerInterface $logger)
     {
         $subject = new Subject();
-        $subject->setName('skulls');
-        $subject->setImage('file:///home/lucas/Pictures/1469383151011-0.jpg');
         $form = $this->createForm(SubjectForm::class, $subject);;
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -44,18 +42,10 @@ class SubjectController extends Controller
             $em->flush();
             $logger->info('Created a subject', $subject->toArray());
             $session->getFlashBag()->add('success', 'Subject "' . $subject->getName() . '" created successfully');
-            return $this->redirectToRoute('subject_success');
+            return $this->redirectToRoute('subject');
         }
         return $this->render('subject/create.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/subject/success", name="subject_success")
-     */
-    public function created(Request $request, SessionInterface $session)
-    {
-        return $this->render('subject/created.html.twig');
     }
 }
